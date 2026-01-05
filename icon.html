@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .canvas-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 1px solid #ddd;
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 10px 10px 0;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .info {
+            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Icon & Preview Generator</h1>
+    
+    <div class="canvas-container">
+        <h2>Icon (200x200)</h2>
+        <canvas id="iconCanvas" width="200" height="200"></canvas>
+        <button onclick="downloadIcon()">Download icon.png</button>
+        <div class="info">200x200 piksel - Mini app ikonu</div>
+    </div>
+
+    <div class="canvas-container">
+        <h2>Preview (600x400)</h2>
+        <canvas id="previewCanvas" width="600" height="400"></canvas>
+        <button onclick="downloadPreview()">Download preview.png</button>
+        <div class="info">600x400 piksel - Önizleme görseli</div>
+    </div>
+
+    <script>
+        // Icon Canvas
+        const iconCanvas = document.getElementById('iconCanvas');
+        const iconCtx = iconCanvas.getContext('2d');
+        
+        // Gradient background
+        const iconGradient = iconCtx.createLinearGradient(0, 0, 200, 200);
+        iconGradient.addColorStop(0, '#667eea');
+        iconGradient.addColorStop(1, '#764ba2');
+        iconCtx.fillStyle = iconGradient;
+        iconCtx.fillRect(0, 0, 200, 200);
+        
+        // Icon emoji/text
+        iconCtx.fillStyle = 'white';
+        iconCtx.font = 'bold 100px Arial';
+        iconCtx.textAlign = 'center';
+        iconCtx.textBaseline = 'middle';
+        iconCtx.fillText('🎯', 100, 100);
+
+        // Preview Canvas
+        const previewCanvas = document.getElementById('previewCanvas');
+        const previewCtx = previewCanvas.getContext('2d');
+        
+        // Gradient background
+        const previewGradient = previewCtx.createLinearGradient(0, 0, 600, 400);
+        previewGradient.addColorStop(0, '#667eea');
+        previewGradient.addColorStop(1, '#764ba2');
+        previewCtx.fillStyle = previewGradient;
+        previewCtx.fillRect(0, 0, 600, 400);
+        
+        // Title
+        previewCtx.fillStyle = 'white';
+        previewCtx.font = 'bold 48px Arial';
+        previewCtx.textAlign = 'center';
+        previewCtx.textBaseline = 'top';
+        previewCtx.fillText('🎯 Günlük Alışkanlıklar', 300, 80);
+        
+        // Subtitle
+        previewCtx.font = '28px Arial';
+        previewCtx.fillText('Alışkanlıklarını takip et, hedefine ulaş!', 300, 160);
+        
+        // Example items
+        const examples = ['💧 Su iç', '📚 Kitap oku', '🏃‍♂️ Egzersiz yap'];
+        previewCtx.font = '32px Arial';
+        examples.forEach((text, index) => {
+            previewCtx.fillText(text, 300, 240 + (index * 50));
+        });
+
+        function downloadIcon() {
+            iconCanvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'icon.png';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        function downloadPreview() {
+            previewCanvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'preview.png';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+    </script>
+</body>
+</html>
+

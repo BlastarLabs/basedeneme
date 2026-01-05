@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="fc:frame" content="vNext">
+    <meta name="base:app_id" content="[SONRA EKLENECEK]">
+    <title>Günlük Alışkanlık Takip</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Günlük Alışkanlıklar</h1>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-label">Bugün</span>
+                    <span class="stat-value" id="today-count">0/0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Seri</span>
+                    <span class="stat-value" id="streak-count">0 gün</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="add-habit-section">
+            <input type="text" id="habit-input" placeholder="Yeni alışkanlık ekle..." maxlength="50">
+            <button id="add-btn" class="btn-primary">Ekle</button>
+        </div>
+
+        <div class="habits-list" id="habits-list">
+            <!-- Alışkanlıklar buraya eklenecek -->
+        </div>
+
+        <div class="empty-state" id="empty-state">
+            <p>Henüz alışkanlık eklenmedi.</p>
+            <p class="empty-hint">Yukarıdan yeni alışkanlık ekleyebilirsin!</p>
+        </div>
+    </div>
+
+    <script type="module" src="game.js"></script>
+</body>
+</html>
+
